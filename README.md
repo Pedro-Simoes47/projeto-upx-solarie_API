@@ -48,5 +48,3 @@ Solaire API é uma aplicação backend desenvolvida para monitorar a geração d
   GET /energia/data?date=2025-10-01
   ```
 
-
-
