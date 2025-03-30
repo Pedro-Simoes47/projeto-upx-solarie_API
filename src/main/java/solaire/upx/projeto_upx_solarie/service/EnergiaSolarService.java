@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import solaire.upx.projeto_upx_solarie.model.EnergiaSolar;
 import solaire.upx.projeto_upx_solarie.repository.EnergiaSolarRepository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class EnergiaSolarService {
         return energiaSolarRepository.findAll();
     }
 
-    public List<EnergiaSolar> buscarPorData(Date data){
+    public List<EnergiaSolar> buscarPorData(LocalDate data){
         return energiaSolarRepository.findByDate(data);
     }
 }

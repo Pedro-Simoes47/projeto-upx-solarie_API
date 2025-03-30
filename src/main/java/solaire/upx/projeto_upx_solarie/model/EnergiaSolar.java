@@ -13,6 +13,7 @@ public class EnergiaSolar {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    @Column(name = "energiaGerada")
     private Double energiaGerada;
 
     private Long panelID;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import solaire.upx.projeto_upx_solarie.model.EnergiaSolar;
 import solaire.upx.projeto_upx_solarie.service.EnergiaSolarService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class EnergiaSolarController {
     }
 
     @GetMapping("/data")
-    public List<EnergiaSolar> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date){
+    public List<EnergiaSolar> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
         return service.buscarPorData(date);
     }
 }
