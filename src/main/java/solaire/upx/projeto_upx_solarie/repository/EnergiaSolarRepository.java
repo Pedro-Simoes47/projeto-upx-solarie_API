@@ -1,7 +1,7 @@
 package solaire.upx.projeto_upx_solarie.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import solaire.upx.projeto_upx_solarie.model.EnergiaSolar;
+import solaire.upx.projeto_upx_solarie.entity.EnergiaSolar;
 
 import java.time.LocalDate;
 import java.util.List;

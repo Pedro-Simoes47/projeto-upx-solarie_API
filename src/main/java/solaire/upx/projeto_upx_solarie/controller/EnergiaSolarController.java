@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import solaire.upx.projeto_upx_solarie.model.EnergiaSolar;
+import solaire.upx.projeto_upx_solarie.entity.EnergiaSolar;
 import solaire.upx.projeto_upx_solarie.service.EnergiaSolarService;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
