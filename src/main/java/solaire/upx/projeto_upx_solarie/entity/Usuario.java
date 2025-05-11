@@ -27,10 +27,6 @@ public class Usuario {
         return ID;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
     public String getNome() {
         return nome;
     }

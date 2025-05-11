@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import solaire.upx.projeto_upx_solarie.entity.EnergiaSolar;
+import solaire.upx.projeto_upx_solarie.entity.EnergiaGerada;
 import solaire.upx.projeto_upx_solarie.service.EnergiaSolarService;
 
 import java.time.LocalDate;
@@ -23,12 +23,12 @@ public class EnergiaSolarController {
     }
 
     @GetMapping
-    public List<EnergiaSolar> buscarTodos(){
+    public List<EnergiaGerada> buscarTodos(){
         return service.buscarTodos();
     }
 
     @GetMapping("/data")
-    public List<EnergiaSolar> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
+    public List<EnergiaGerada> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
         return service.buscarPorData(date);
     }
 }
