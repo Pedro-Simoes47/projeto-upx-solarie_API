@@ -13,22 +13,22 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/energia")
+@RequestMapping("/energia-gerada")
 public class EnergiaSolarController {
 
-    private EnergiaSolarService service;
+    private EnergiaSolarService energiaSolarService;
 
     public EnergiaSolarController(EnergiaSolarService service) {
-        this.service = service;
+        this.energiaSolarService = service;
     }
 
     @GetMapping
     public List<EnergiaGerada> buscarTodos(){
-        return service.buscarTodos();
+        return energiaSolarService.buscarTodos();
     }
 
     @GetMapping("/data")
     public List<EnergiaGerada> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
-        return service.buscarPorData(date);
+        return energiaSolarService.buscarPorData(date);
     }
 }

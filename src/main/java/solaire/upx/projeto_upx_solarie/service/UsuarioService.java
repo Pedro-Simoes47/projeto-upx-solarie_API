@@ -2,6 +2,7 @@ package solaire.upx.projeto_upx_solarie.service;
 
 import org.springframework.stereotype.Service;
 import solaire.upx.projeto_upx_solarie.entity.Usuario;
+import solaire.upx.projeto_upx_solarie.exception.EmailJaExisteException;
 import solaire.upx.projeto_upx_solarie.repository.UsuarioRepository;
 
 import java.util.List;
@@ -29,8 +30,10 @@ public class UsuarioService {
         return usuarioRepository.buscarPorEmail(email);
     }
 
-    public boolean emailExiste(String email){
-        return usuarioRepository.emailExite(email);
+    public void emailExiste(String email){
+        if (usuarioRepository.emailExite(email));
+            throw new EmailJaExisteException("E-mail ja cadastrado: " + email);
     }
+
 
 }
