@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import solaire.upx.projeto_upx_solarie.dto.LoginRequest;
 import solaire.upx.projeto_upx_solarie.entity.Usuario;
 import solaire.upx.projeto_upx_solarie.exception.EmailJaExisteException;
+import solaire.upx.projeto_upx_solarie.exception.EmailNaoEncontradoException;
+import solaire.upx.projeto_upx_solarie.exception.SenhaInvalidaException;
 import solaire.upx.projeto_upx_solarie.service.UsuarioService;
 
 @RestController
@@ -30,4 +33,20 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
-}
+
+
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody LoginRequest login){
+            try {
+                Usuario usuario = usuarioService.autenticar(login.getEmail(), login.getSenha());
+                return ResponseEntity.ok("Login realizado com sucesso!");
+            }catch (EmailJaExisteException | SenhaInvalidaException e){
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            }
+
+        }
+    }
+
+
+
+

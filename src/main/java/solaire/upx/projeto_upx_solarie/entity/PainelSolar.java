@@ -11,6 +11,15 @@ public class PainelSolar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
 
+    private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)

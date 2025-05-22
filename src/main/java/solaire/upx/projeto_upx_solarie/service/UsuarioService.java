@@ -3,6 +3,8 @@ package solaire.upx.projeto_upx_solarie.service;
 import org.springframework.stereotype.Service;
 import solaire.upx.projeto_upx_solarie.entity.Usuario;
 import solaire.upx.projeto_upx_solarie.exception.EmailJaExisteException;
+import solaire.upx.projeto_upx_solarie.exception.EmailNaoEncontradoException;
+import solaire.upx.projeto_upx_solarie.exception.SenhaInvalidaException;
 import solaire.upx.projeto_upx_solarie.repository.UsuarioRepository;
 
 import java.util.List;
@@ -33,6 +35,18 @@ public class UsuarioService {
     public void emailExiste(String email){
         if (usuarioRepository.emailExite(email));
             throw new EmailJaExisteException("E-mail ja cadastrado: " + email);
+    }
+
+    public Usuario autenticar(String email, String senha){
+        Optional<Usuario> usuarioExiste = usuarioRepository.buscarPorEmail(email);
+
+        Usuario usuario = usuarioExiste.orElseThrow(() -> new EmailNaoEncontradoException("E-mail nao encontrado" + email));
+
+        if(!usuario.getSenhaHash().equals(senha)){
+            throw new SenhaInvalidaException("Senha incorreta!");
+        }
+                return usuario;
+
     }
 
 
