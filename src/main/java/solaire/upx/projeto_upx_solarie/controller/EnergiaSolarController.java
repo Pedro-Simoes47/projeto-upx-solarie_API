@@ -1,35 +1,36 @@
 package solaire.upx.projeto_upx_solarie.controller;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import solaire.upx.projeto_upx_solarie.model.EnergiaSolar;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import solaire.upx.projeto_upx_solarie.dto.EnergiaGeradaRequest;
+import solaire.upx.projeto_upx_solarie.entity.EnergiaGerada;
 import solaire.upx.projeto_upx_solarie.service.EnergiaSolarService;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/energia")
+@RequestMapping("/energia")
 public class EnergiaSolarController {
 
-    private EnergiaSolarService service;
+    private final EnergiaSolarService energiaSolarService;
 
-    public EnergiaSolarController(EnergiaSolarService service) {
-        this.service = service;
+    public EnergiaSolarController(EnergiaSolarService energiaSolarService) {
+        this.energiaSolarService = energiaSolarService;
     }
 
-    @GetMapping
-    public List<EnergiaSolar> buscarTodos(){
-        return service.buscarTodos();
+    @PostMapping
+    public ResponseEntity<String> registrarEnergia(@RequestBody EnergiaGeradaRequest request) {
+        try {
+            energiaSolarService.registrarEnergiaGerada(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Energia registrada com sucesso.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    @GetMapping("/data")
-    public List<EnergiaSolar> buscarPorData(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
-        return service.buscarPorData(date);
+    @GetMapping("/energia-gerada")
+    public List<EnergiaGerada> buscarEnergiaGerada(){
+        return energiaSolarService.energiaGeradaList();
     }
 }
