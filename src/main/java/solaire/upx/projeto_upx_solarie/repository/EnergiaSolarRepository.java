@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface EnergiaSolarRepository extends JpaRepository<EnergiaGerada,Long> {
-    List<EnergiaGerada> buscarPorDataGeracao(LocalDate dataGeracao);
+    List<EnergiaGerada> findByDataGeracao(LocalDate dataGeracao);
 }

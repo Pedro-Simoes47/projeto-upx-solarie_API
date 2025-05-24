@@ -1,6 +1,5 @@
 package solaire.upx.projeto_upx_solarie.service;
 
-import org.aspectj.weaver.patterns.HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor;
 import org.springframework.stereotype.Service;
 import solaire.upx.projeto_upx_solarie.dto.CriarPainelRequest;
 import solaire.upx.projeto_upx_solarie.entity.PainelSolar;
@@ -26,7 +25,7 @@ public class PainelSolarService {
     }
 
     public List<PainelSolar> buscarPorUsuarioID(Usuario usuarioID){
-        return painelSolarRepository.buscarPorUsuarioID(usuarioID);
+        return painelSolarRepository.findByUsuario(usuarioID);
     }
 
     public PainelSolar criarPainel(CriarPainelRequest request){

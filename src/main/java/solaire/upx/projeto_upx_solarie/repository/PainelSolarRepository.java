@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface PainelSolarRepository extends JpaRepository<PainelSolar,Long> {
 
-    List<PainelSolar> buscarPorUsuarioID(Usuario usuarioID);
+    List<PainelSolar> findByUsuario(Usuario usuario);
 }

@@ -45,4 +45,7 @@ public class EnergiaGerada {
         return painelSolar.getID();
     }
 
+    public void setPainelSolar(PainelSolar painelSolar) {
+        this.painelSolar = painelSolar;
+    }
 }

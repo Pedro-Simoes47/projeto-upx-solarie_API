@@ -29,16 +29,17 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> buscarPorEmail(String email){
-        return usuarioRepository.buscarPorEmail(email);
+        return usuarioRepository.findByEmail(email);
     }
 
     public void emailExiste(String email){
-        if (usuarioRepository.emailExite(email));
+        if (usuarioRepository.existsByEmail(email)) {
             throw new EmailJaExisteException("E-mail ja cadastrado: " + email);
+        }
     }
 
     public Usuario autenticar(String email, String senha){
-        Optional<Usuario> usuarioExiste = usuarioRepository.buscarPorEmail(email);
+        Optional<Usuario> usuarioExiste = usuarioRepository.findByEmail(email);
 
         Usuario usuario = usuarioExiste.orElseThrow(() -> new EmailNaoEncontradoException("E-mail nao encontrado" + email));
 
